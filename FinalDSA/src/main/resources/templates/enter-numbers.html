@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Numbers</title>
+</head>
+<body>
+<h1>Enter Numbers</h1>
+<form action="/trees/process" method="post">
+    <label for="numbers">Enter numbers (comma-separated):</label>
+    <input type="text" id="numbers" name="numbers" required>
+    <button type="submit">Submit</button>
+</form>
+<form action="/trees/previous" method="get">
+    <button type="submit">Show Previous Trees</button>
+</form>
+</body>
+</html>

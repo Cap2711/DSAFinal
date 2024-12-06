@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Previous Trees</title>
+</head>
+<body>
+<h1>Previous Trees</h1>
+<div id="tree-container">
+  <p>Loading previous trees...</p>
+</div>
+<script>
+  fetch('/trees/previous')
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.json();
+      })
+      .then(data => {
+          const treeContainer = document.getElementById('tree-container');
+          treeContainer.innerHTML = ''; // Clear loading message
+          if (data.length === 0) {
+              treeContainer.innerHTML = '<p>No previous trees found.</p>';
+          } else {
+              const list = document.createElement('ul');
+              data.forEach(tree => {
+                  const listItem = document.createElement('li');
+                  listItem.innerHTML = `
+                      <strong>Inputs:</strong> ${tree.inputValues.join(', ')}<br>
+                      <strong>Tree Structure:</strong> ${tree.treeStructure}
+                  `;
+                  list.appendChild(listItem);
+              });
+              treeContainer.appendChild(list);
+          }
+      })
+      .catch(error => {
+          const treeContainer = document.getElementById('tree-container');
+          treeContainer.innerHTML = '<p>Error fetching previous trees. Please try again later.</p>';
+          console.error('Error fetching previous trees:', error);
+      });
+</script>
+</body>
+</html>
