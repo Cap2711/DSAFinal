@@ -124,7 +124,6 @@ public class BTService {
                         return dto;
                     })
                     .collect(Collectors.toList());
-
         } catch (Exception e) {
             customLogger.logError("Failed to get all previous trees. METHOD: getAllPreviousTrees()");
             e.printStackTrace();
